@@ -7,6 +7,7 @@ import * as THREEx from '@ar-js-org/ar.js/three.js/build/ar-threex-location-only
 
 function App() {
   const ref = React.useRef<HTMLCanvasElement>(null);
+  const [gps, setGps] = React.useState<string>("");
 
   React.useEffect(() => {
     if (!ref.current) {
@@ -33,6 +34,10 @@ function App() {
     // Start the GPS
     arjs.startGps();
 
+    arjs.on("gps-camera-update-positon", (event: unknown) => {
+      setGps(JSON.stringify(event));
+    })
+
     requestAnimationFrame(render);
 
     function render() {
@@ -45,6 +50,7 @@ function App() {
 
       // Update the scene using the latest sensor readings
       deviceOrientationControls.update();
+      arjs.update();
 
       cam.update();
       renderer.render(scene, camera);
@@ -54,6 +60,9 @@ function App() {
 
   return (
     <>
+      <div id="gps">
+        {gps}
+      </div>
       <canvas ref={ref} id="canvas"></canvas>
     </>
   )
