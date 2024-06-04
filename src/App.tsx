@@ -8,7 +8,6 @@ import * as THREEx from '@ar-js-org/ar.js/three.js/build/ar-threex-location-only
 
 function App() {
   const ref = React.useRef<HTMLCanvasElement>(null);
-  const [pos, setPos] = React.useState<string>("");
   const [ready, setReady] = React.useState<boolean>(false);
 
   React.useEffect(() => {
@@ -35,17 +34,13 @@ function App() {
     // Change this to a location 0.001 degrees of latitude north of you, so that you will face it
     arjs.add(box, 63.422109, 10.142992, 40.00);
 
-    arjs.on("gpsupdate", (pos: Object) => {
-      setPos(JSON.stringify(pos));
-    });
-
     // Start the GPS
     arjs.startGps();
 
     requestAnimationFrame(render);
 
     function render() {
-      if (canvas.width != canvas.clientWidth || canvas.height != canvas.clientHeight) {
+      if (canvas.width !== canvas.clientWidth || canvas.height !== canvas.clientHeight) {
         renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
         const aspect = canvas.clientWidth / canvas.clientHeight;
         camera.aspect = aspect;
@@ -63,7 +58,6 @@ function App() {
 
   return (
     <>
-      {pos}
       <canvas ref={ref} id="canvas" onClick={() => setReady(true)}></canvas>
     </>
   )
