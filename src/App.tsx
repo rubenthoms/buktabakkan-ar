@@ -21,6 +21,7 @@ function App() {
 
     const arjs = new THREEx.LocationBased(scene, camera);
     const cam = new THREEx.WebcamRenderer(renderer);
+    const deviceOrientationControls = new THREEx.DeviceOrientationControls(cam);
 
     const geom = new THREE.BoxGeometry(20, 20, 20);
     const mtl = new THREE.MeshBasicMaterial({ color: 0xff0000 });
@@ -43,7 +44,7 @@ function App() {
       }
 
       // Update the scene using the latest sensor readings
-      // deviceOrientationControls.update();
+      deviceOrientationControls.update();
 
       cam.update();
       renderer.render(scene, camera);
