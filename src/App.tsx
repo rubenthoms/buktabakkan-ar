@@ -24,7 +24,7 @@ function App() {
     const arjs = new THREEx.LocationBased(scene, camera);
     const cam = new THREEx.WebcamRenderer(renderer);
 
-    const geom = new THREE.BoxGeometry(20000, 20000, 20000);
+    const geom = new THREE.BoxGeometry(20, 20, 20);
     const mtl = new THREE.MeshBasicMaterial({ color: 0xff0000 });
 
     const deviceOrientationControls = new THREEx.DeviceOrientationControls(camera);
@@ -32,18 +32,16 @@ function App() {
     const box = new THREE.Mesh(geom, mtl);
 
     // Change this to a location 0.001 degrees of latitude north of you, so that you will face it
-    arjs.add(box, 63.42181, 10.1427, 20.00);
+    arjs.add(box, 63.42181, 10.1427);
 
     arjs.on("gps-error", (err: any) => {
       console.error(err);
     });
 
-    arjs.on("gpsupdate", () => {
-      requestAnimationFrame(render);
-    });
-
     // Start the GPS
     arjs.startGps();
+
+    requestAnimationFrame(render);
 
     function render() {
       if (canvas.width !== canvas.clientWidth || canvas.height !== canvas.clientHeight) {
@@ -58,7 +56,7 @@ function App() {
 
       cam.update();
       renderer.render(scene, camera);
-      // requestAnimationFrame(render);
+      requestAnimationFrame(render);
     }
   }, [ready]);
 
