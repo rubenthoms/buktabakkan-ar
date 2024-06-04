@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css'
 
+// @ts-ignore
 import * as THREE from "three";
 // @ts-ignore
 import * as THREEx from '@ar-js-org/ar.js/three.js/build/ar-threex-location-only.js';
