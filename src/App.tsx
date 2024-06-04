@@ -43,8 +43,7 @@ function App() {
     });
 
     // Start the GPS
-    // arjs.startGps();
-    arjs.fakeGps(63.422109, 10.141992);
+    arjs.startGps();
 
     requestAnimationFrame(render);
 
