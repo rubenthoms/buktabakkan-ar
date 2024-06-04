@@ -7,6 +7,7 @@ import * as THREE from "three";
 import * as THREEx from '@ar-js-org/ar.js/three.js/build/ar-threex-location-only.js';
 
 function App() {
+  const [gps, setGps] = React.useState<GeolocationPosition | null>(null);
   const ref = React.useRef<HTMLCanvasElement>(null);
   const [ready, setReady] = React.useState<boolean>(false);
 
@@ -39,11 +40,11 @@ function App() {
     });
 
     arjs.on("gpsupdate", (pos: any) => {
-      arjs.fakeGps(pos.coords.latitude, pos.coords.longitude, pos.coords.altitude ?? 0)
+      setGps(pos);
     });
 
     // Start the GPS
-    // arjs.startGps();
+    arjs.startGps();
 
     requestAnimationFrame(render);
 
@@ -66,6 +67,9 @@ function App() {
 
   return (
     <>
+      <p>{gps?.coords.latitude}</p>
+      <p>{gps?.coords.longitude}</p>
+      <p>{gps?.coords.altitude}</p>
       <canvas ref={ref} id="canvas" onClick={() => setReady(true)}></canvas>
     </>
   )
