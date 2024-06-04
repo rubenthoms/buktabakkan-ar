@@ -33,12 +33,12 @@ function App() {
     // Change this to a location 0.001 degrees of latitude north of you, so that you will face it
     arjs.add(box, 63.422109, 10.142992, 40.00);
 
-    // Start the GPS
-    arjs.startGps();
-
     arjs.on("gpsupdate", (pos: Object) => {
       setPos(JSON.stringify(pos));
     });
+
+    // Start the GPS
+    arjs.startGps();
 
     requestAnimationFrame(render);
 
