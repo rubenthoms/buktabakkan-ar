@@ -38,14 +38,12 @@ function App() {
       console.error(err);
     });
 
-    arjs.on("gpsupdate", async (pos: any) => {
-      console.log(pos.coords.latitude, pos.coords.longitude, pos.coords.altitude ?? "");
+    arjs.on("gpsupdate", () => {
+      requestAnimationFrame(render);
     });
 
     // Start the GPS
     arjs.startGps();
-
-    requestAnimationFrame(render);
 
     function render() {
       if (canvas.width !== canvas.clientWidth || canvas.height !== canvas.clientHeight) {
@@ -60,7 +58,7 @@ function App() {
 
       cam.update();
       renderer.render(scene, camera);
-      requestAnimationFrame(render);
+      // requestAnimationFrame(render);
     }
   }, [ready]);
 
