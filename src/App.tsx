@@ -7,7 +7,6 @@ import * as THREEx from '@ar-js-org/ar.js/three.js/build/ar-threex-location-only
 
 function App() {
   const ref = React.useRef<HTMLCanvasElement>(null);
-  const [gps, setGps] = React.useState<string>("");
 
   React.useEffect(() => {
     if (!ref.current) {
@@ -55,9 +54,6 @@ function App() {
 
   return (
     <>
-      <div id="gps">
-        {gps}
-      </div>
       <canvas ref={ref} id="canvas"></canvas>
     </>
   )
