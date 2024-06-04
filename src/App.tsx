@@ -34,6 +34,14 @@ function App() {
     // Change this to a location 0.001 degrees of latitude north of you, so that you will face it
     arjs.add(box, 63.422109, 10.142992, 40.00);
 
+    arjs.on("gps-error", (err: any) => {
+      console.error(err);
+    });
+
+    arjs.on("gpsupdate", async (pos: any) => {
+      console.log(pos);
+    });
+
     // Start the GPS
     arjs.startGps();
 
