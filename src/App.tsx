@@ -9,9 +9,10 @@ import * as THREEx from '@ar-js-org/ar.js/three.js/build/ar-threex-location-only
 function App() {
   const ref = React.useRef<HTMLCanvasElement>(null);
   const [pos, setPos] = React.useState<string>("");
+  const [ready, setReady] = React.useState<boolean>(false);
 
   React.useEffect(() => {
-    if (!ref.current) {
+    if (!ref.current || !ready) {
       return;
     }
 
@@ -28,6 +29,7 @@ function App() {
     const mtl = new THREE.MeshBasicMaterial({ color: 0xff0000 });
 
     const deviceOrientationControls = new THREEx.DeviceOrientationControls(camera);
+    deviceOrientationControls.
     
     const box = new THREE.Mesh(geom, mtl);
 
@@ -58,12 +60,12 @@ function App() {
       renderer.render(scene, camera);
       requestAnimationFrame(render);
     }
-  }, []);
+  }, [ready]);
 
   return (
     <>
-      <p>{pos}</p>
-      <canvas ref={ref} id="canvas"></canvas>
+      {pos}
+      <canvas ref={ref} id="canvas" onClick={() => setReady(true)}></canvas>
     </>
   )
 }
