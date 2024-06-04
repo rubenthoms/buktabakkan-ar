@@ -39,7 +39,7 @@ function App() {
     });
 
     arjs.on("gpsupdate", async (pos: any) => {
-      console.log(pos);
+      console.log(pos.coords.latitude, pos.coords.longitude, pos.coords.altitude ?? "");
     });
 
     // Start the GPS
