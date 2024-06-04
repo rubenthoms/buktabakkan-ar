@@ -29,7 +29,6 @@ function App() {
     const mtl = new THREE.MeshBasicMaterial({ color: 0xff0000 });
 
     const deviceOrientationControls = new THREEx.DeviceOrientationControls(camera);
-    deviceOrientationControls.
     
     const box = new THREE.Mesh(geom, mtl);
 
