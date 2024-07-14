@@ -7,7 +7,6 @@ import * as THREE from "three";
 import * as THREEx from '@ar-js-org/ar.js/three.js/build/ar-threex-location-only.js';
 
 function App() {
-  const [gps, setGps] = React.useState<GeolocationPosition | null>(null);
   const ref = React.useRef<HTMLCanvasElement>(null);
   const [ready, setReady] = React.useState<boolean>(false);
 
@@ -37,10 +36,6 @@ function App() {
 
     arjs.on("gps-error", (err: any) => {
       console.error(err);
-    });
-
-    arjs.on("gpsupdate", (pos: any) => {
-      setGps(pos);
     });
 
     // Start the GPS
