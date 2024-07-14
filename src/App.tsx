@@ -25,7 +25,7 @@ function App() {
     const arjs = new THREEx.LocationBased(scene, camera);
     const cam = new THREEx.WebcamRenderer(renderer);
 
-    const geom = new THREE.BoxGeometry(20000, 20000, 20000);
+    const geom = new THREE.BoxGeometry(20, 20, 20);
     const mtl = new THREE.MeshBasicMaterial({ color: 0xff0000 });
 
     const deviceOrientationControls = new THREEx.DeviceOrientationControls(camera);
@@ -67,9 +67,6 @@ function App() {
 
   return (
     <>
-      <p>{gps?.coords.latitude}</p>
-      <p>{gps?.coords.longitude}</p>
-      <p>{gps?.coords.altitude}</p>
       <canvas ref={ref} id="canvas" onClick={() => setReady(true)}></canvas>
     </>
   )
